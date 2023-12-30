@@ -1,9 +1,6 @@
-// Word Jumble
-// A classic Word Jumble game
-// Written by Abdullah-Al-Ahad Bhuiyan
-
-// This program is created as a stupid programer
-// only knowing Array, Operators, Branch and String
+/**
+ * Word Jumble
+ **/
 
 #include <iostream>
 #include <string>
@@ -50,25 +47,34 @@ int main()
     cout << "\nUnscramble the letters to make a word ";
     cout << "\nEnter `hint` for a hint.";
     cout << "\nEnter `quit` to quit a game.";
-
     cout << "\n\nThe jumble is: " << jumble;
-    string guess; // creating variable for getting the guess from user
-    do
-    {
-        cout << "\n\nYour Guess:";
-        cin >> guess; // collecting guess from user
 
-        if (guess != THE_WORD) // checking if guess is the Word or not
+    string guess;
+    cout << "\n\nYour Guess: ";
+    cin >> guess; // collecting guess from user                           // creating variable for getting the guess from user
+
+    while (guess != THE_WORD && guess != "quit") // playing loop until user quits or
+    {
+
+        if (guess == "hint") // for hint
         {
-            cout << "\nSorry, that's not it!";
+            cout << THE_HINT;
         }
+
         else
         {
-            cout << "\nThat's it. You guessed it!";
+            cout << "Sorry, that's not it!";
         }
 
-    } while (guess != THE_WORD && guess != "quit"); // playing loop until user quits or
-                                                    // guess the guesses the correct word
+        cout << "\n\nYour Guess: ";
+        cin >> guess;
+    }
+
+    if (guess == THE_WORD) // checking if guess is the Word or not
+    {
+        cout << "That's it. You guessed it!";
+    }
+    cout << "\nThanks for playing!";
 
     return 0;
 }
