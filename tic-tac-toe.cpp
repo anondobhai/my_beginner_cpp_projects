@@ -41,11 +41,11 @@ int main()
 
     instruction();
 
-    char human = humanPiece();
+    char human = humanPiece(); // getting mark
     char computer = opponent(human);
     char turn = 'X';
 
-    while (winner(board) == NO_ONE)
+    while (winner(board) == NO_ONE) // playing game until get winner or tie
     {
         if (turn == human)
         {
@@ -61,7 +61,7 @@ int main()
         turn = opponent(turn);
     }
 
-    announcerWinner(winner(board), human, computer);
+    announcerWinner(winner(board), human, computer); // announcing winner
 
     return 0;
 }
@@ -192,11 +192,16 @@ int humanMove(const vector<char> &board, char human)
     return move;
 }
 
+// computer move er jonno AI toiri korlam
 int computerMove(vector<char> &board, char computer)
 {
     unsigned int move = 0;
     bool found = false;
 
+    /**
+     * prothome check korlam je kono index e move korle jodi computer winner hoite pare
+     * tahole sei index e jeno move kore
+     */
     while (!found && move < board.size())
     {
         if (isLegal(board, move))
@@ -211,6 +216,11 @@ int computerMove(vector<char> &board, char computer)
             ++move;
         }
     }
+
+    /**
+     * ar jodi na pay tahole check korbe je kon index e human move korle winner hobe
+     * sei index e computer move kore jeno block kore
+     */
 
     if (!found)
     {
@@ -232,6 +242,11 @@ int computerMove(vector<char> &board, char computer)
             }
         }
     }
+
+    /**
+     * tao jodi na hoy tahole best moves er moddhe prothe computer middle move koruk,
+     *      jodi legal na hoy computer jeno corner  
+     */
 
     if (!found)
     {
